@@ -1,0 +1,14 @@
+[Unit]
+Description=WebTank
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/kanamaru/gihyo/10-01-tank
+ExecStart=/usr/bin/python3 -m app
+TimeoutStopSec=5
+StandardOutput=null
+
+[Install]
+WantedBy = multi-user.target
+

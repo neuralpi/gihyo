@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<title>クローラーの操作 (カメラつき)</title>
+<!-- jQuery  -->
+<script type="text/javascript" src="/10-2/static/jquery-3.7.1.min.js"></script>
+
+<script type="text/javascript" src="/10-2/static/javascript.js"></script>
+<link href="/10-2/static/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div id="touchArea" align="center">
+    <canvas id="canvas" oncontextmenu="return false;"></canvas>
+  </div>
+
+  <p>Android、iPhone、iPadの場合: タッチしている間だけモーターは回転し、タッチを離すと静止します（タッチ動作）。</p>
+
+  <p>タッチ非サポートのPCの場合: マウスをクリックした位置により、モーターが回転を開始します。中央付近をクリックしないとモーターは止まりません（クリック動作）。</p>
+
+  <p>WindowsタブレットのMicrosoft Edge/Google Chrome/Firefoxの場合: 上記のタッチ動作 + クリック動作。</p>
+
+</body>
+</html>

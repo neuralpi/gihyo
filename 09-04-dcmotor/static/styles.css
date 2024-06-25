@@ -1,0 +1,20 @@
+#touchArea{
+    width: 100%;
+    height: auto;
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+#touchImage{
+    width: 100%;
+    height: auto;
+    -webkit-touch-callout: none;
+}
+
+#touchImage::-moz-selection{
+    background:rgba(0,0,0,0);
+}
+
+#touchImage::selection{
+    background:rgba(0,0,0,0);
+}
