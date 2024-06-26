@@ -4,7 +4,7 @@ from signal import pause
 
 def pressed(button):
     if button.pin.number == 27:
-        global ledState 
+        global ledState
         ledState = not ledState
         if ledState == 1:
             led.on()
