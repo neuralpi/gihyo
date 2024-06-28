@@ -12,7 +12,7 @@ def pwm_check():
         pwmchip = '/sys/class/pwm/pwmchip{}'.format(chipid)
         isPi5 = False
         if not os.access(pwmchip, os.F_OK):
-            print('{},4 do not exist. \'dtoverlay=pwm-2chan\' in /boot/config.txt is required. '.format(pwmchip))
+            print('{},2 do not exist. \'dtoverlay=pwm-2chan\' in /boot/firmware/config.txt is required.'.format(pwmchip))
             sys.exit()
 
 def pwm_open(pwmid):
