@@ -22,4 +22,9 @@ async def index(request: Request):
     context = {"request": request}
     return templates.TemplateResponse("index.html", context)
 
-uvicorn.run(app, host='0.0.0.0', port=8000)
+try:
+    uvicorn.run(app, host='0.0.0.0', port=8000)
+except KeyboardInterrupt:
+    pass
+
+led.close()

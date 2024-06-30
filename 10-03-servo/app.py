@@ -121,3 +121,7 @@ except KeyboardInterrupt:
     pass
 
 pwm_disable(pwmid0)
+out1.close()
+out2.close()
+out3.close()
+out4.close()
