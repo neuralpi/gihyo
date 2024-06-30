@@ -15,7 +15,7 @@ led3 = PWMLED(23)
 led1.value = 0
 led2.value = 0
 led3.value = 0
-# 共通アノードの場合、初期デューティ比を 1.0 に
+# 共通アノードの場合、初期デューティ比を 1 に
 #led1.value = 1
 #led2.value = 1
 #led3.value = 1
