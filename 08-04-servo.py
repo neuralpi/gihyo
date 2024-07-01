@@ -6,6 +6,7 @@ import sys
 def pwm_check():
     global chipid, pwmchip, isPi5, pwmid0, pwmid1
     if not os.access(pwmchip, os.F_OK):
+        print('If you are using Pi 5, please add \'dtoverlay=pwm-2chan\' in /boot/firmware/config.txt.')
         chipid = 0 # Pi 1-4
         pwmid0 = 0 # Pi 1-4, GPIO18
         pwmid1 = 1 # Pi 1-4, GPIO19
