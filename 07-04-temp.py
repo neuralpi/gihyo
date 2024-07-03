@@ -15,10 +15,10 @@ from time import sleep
 def read_tmp102():
     word_data =  bus.read_word_data(address_tmp102, register_tmp102)
     data = (word_data & 0xff00)>>8 | (word_data & 0xff)<<8
-    data = data>>4 # 12ビットデータ
-    if data & 0x800 == 0:  # 温度が正の場合
+    data = data>>4  # 12ビットデータ
+    if data & 0x800 == 0:  # 温度が正または0の場合
         temperature = data*0.0625
-    else: # 温度が負の場合、絶対値を取ってからマイナスをかける
+    else:  # 温度が負の場合、絶対値を取ってからマイナスをかける
         temperature = ( (~data&0xfff) + 1)*-0.0625
     return temperature
 
