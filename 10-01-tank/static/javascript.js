@@ -29,12 +29,12 @@ window.onload = function(){
 
     // Firefoxで画面の回転を検出
     var mqOrientation = window.matchMedia("(orientation: portrait)");
-    mqOrientation.addListener(function() {
+    mqOrientation.addListener(function(){
         resize_canvas();
     });
 
     // ウインドウサイズの変更を検出
-    window.addEventListener('resize', function (event) {
+    window.addEventListener('resize', function (event){
         resize_canvas();
     });
 }

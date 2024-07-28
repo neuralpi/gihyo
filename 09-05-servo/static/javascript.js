@@ -7,7 +7,7 @@ var sliderValue1 = sliderMax/2;
 var url_base = '/9-5/get/';
 
 // jQuery UIによるスライダの設定
-$(function() {
+$(function(){
     // スライダを動かしたときに呼ばれるイベントハンドラの設定
     var sliderHandler0 = function(e, ui){
         var ratio = ui.value/sliderMax;

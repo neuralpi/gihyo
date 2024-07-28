@@ -32,12 +32,12 @@ window.onload = function(){
 
     // Firefoxで画面の回転を検出
     var mqOrientation = window.matchMedia("(orientation: portrait)");
-    mqOrientation.addListener(function() {
+    mqOrientation.addListener(function(){
         resize_canvas();
     });
 
     // ウインドウサイズの変更を検出
-    window.addEventListener('resize', function (event) {
+    window.addEventListener('resize', function (event){
         resize_canvas();
     });
 }
@@ -93,13 +93,13 @@ function imageSetup(){
 
     mImgArrow.src = URL2;
 
-    mImg1.onload = function() {
+    mImg1.onload = function(){
         mImg2.src = URL1 + '&' + (mCount++);
         mCtx.drawImage(mImg1, 0, 0, mWidth, mHeight);
         mCtx.drawImage(mImgArrow, 0, 0, mWidth, mHeight);
     };
 
-    mImg2.onload = function() {
+    mImg2.onload = function(){
         mImg1.src =URL1 + '&' + (mCount++);
         mCtx.drawImage(mImg2, 0, 0, mWidth, mHeight);
         mCtx.drawImage(mImgArrow, 0, 0, mWidth, mHeight);

@@ -8,10 +8,10 @@ window.onload = function(){
 function getTempPeriodic(millis){
 
     fetch(url)
-    .then(function(response) {
+    .then(function(response){
         return response.text();
     })
-    .then(function(text) {
+    .then(function(text){
         document.getElementById("temp_text").value = text;
     });
 
