@@ -4,17 +4,32 @@ import os
 import sys
 
 def pwm_check():
-    global chipid, pwmchip, isPi5, pwmid0, pwmid1
+    global chipid, pwmchip, isOldPi5, isPi5, pwmid0, pwmid1
     if not os.access(pwmchip, os.F_OK):
-        print('If you are using Pi 5, please add \'dtoverlay=pwm-2chan\' in /boot/firmware/config.txt.')
-        chipid = 0 # Pi 1-4
-        pwmid0 = 0 # Pi 1-4, GPIO18
-        pwmid1 = 1 # Pi 1-4, GPIO19
+        chipid = 0 # Pi 1-4, or Pi 5 with kernel 6.12+
+        pwmid0 = 2 # Pi 5 with kernel 6.12+, GPIO18
+        pwmid1 = 3 # Pi 5 with kernel 6.12+, GPIO19
         pwmchip = '/sys/class/pwm/pwmchip{}'.format(chipid)
-        isPi5 = False
+        isOldPi5 = False
+        isPi5 = True
         if not os.access(pwmchip, os.F_OK):
             print('{},2 do not exist. \'dtoverlay=pwm-2chan\' in /boot/firmware/config.txt is required.'.format(pwmchip))
             sys.exit()
+
+def pi5_check():
+    global pwmid0, pwmid1, pwmchip, isPi5
+    pwmdir = '{}/pwm{}'.format(pwmchip, pwmid0)
+    pwmexp = '{}/export'.format(pwmchip)
+    if not os.path.isdir(pwmdir):
+        try:
+            with open(pwmexp, 'w') as f:
+                f.write('{}\n'.format(pwmid0))
+            sleep(0.3)
+        except OSError:
+            pwmid0 = 0 # Pi1-4, GPIO18
+            pwmid1 = 1 # Pi1-4, GPIO19
+            pwmchip = '/sys/class/pwm/pwmchip{}'.format(chipid)
+            isPi5 = False
 
 def pwm_open(pwmid):
     pwmdir = '{}/pwm{}'.format(pwmchip, pwmid)
@@ -60,13 +75,14 @@ def servo_duty_hwpwm(val):
     #duty = (servo_max-servo_min)*(val-val_min)/(val_max-val_min) + servo_min
     return duty
 
-isPi5 = True
-chipid = 2 # Pi5
-pwmid0 = 2 # Pi5, GPIO18
-pwmid1 = 3 # Pi5, GPIO19
+isOldPi5 = True # Pi 5 with kernel 6.6
+isPi5 = False   # Pi 5 with kernel 6.12+
+chipid = 2 # Pi5 with kernel 6.6
+pwmid0 = 2 # Pi5 with kernel 6.6, GPIO18
+pwmid1 = 3 # Pi5 with kernel 6.6, GPIO19
 pwmchip = '/sys/class/pwm/pwmchip{}'.format(chipid)
-
 pwm_check()
+pi5_check()
 pwm_open(pwmid0)
 pwm_freq(pwmid0, 50) #Hz
 pwm_duty(pwmid0, 1.35) #ms
